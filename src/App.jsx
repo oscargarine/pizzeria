@@ -1,5 +1,7 @@
 import Navbar from './components/Navbar/Navbar'
-import Home from './components/Home/Home'
+/* import Home from './components/Home/Home' */
+import Register from './components/Register/Register'
+/* import Login from './components/Login/Login' */
 import Footer from './components/Footer/Footer'
 
 const App = () => {
@@ -7,7 +9,9 @@ const App = () => {
   return(
     <>
       <Navbar />
-      <Home />
+      {/* <Home /> */} 
+      <Register />
+      {/* <Login /> */}
       <Footer />
     </>
   )
