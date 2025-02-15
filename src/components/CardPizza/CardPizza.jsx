@@ -1,44 +1,48 @@
-import PropTypes from 'prop-types';
-import { Card as BootstrapCard, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types'
 
 const Card = ({ img, name, price, ingredients }) => {
   return (
-    <BootstrapCard style={{ width: '18rem', margin: '1rem' }}>
+    <div className="card custom-card">
       {/* Imagen */}
-      <BootstrapCard.Img variant="top" src={img} alt={`Imagen de ${name}`} />
+      <img src={img} className="card-img-top" alt={`Imagen de ${name}`} />
 
       {/* Cuerpo */}
-      <BootstrapCard.Body>
+      <div className="card-body">
         {/* Título */}
-        <BootstrapCard.Title className="text-center">{name}</BootstrapCard.Title>
+        <h5 className="card-title text-center">{name}</h5>
 
-        {/* Ingredientes */}
-        <BootstrapCard.Text className="text-center">
+        {/* Ingredientes con lista */}
+        <div className="card-text text-center">
           <strong>Ingredientes:</strong>
-          <br />
-          <span>
-            🍕 {Array.isArray(ingredients) ? ingredients.join(', ') : 'No disponibles'}
-          </span>
-        </BootstrapCard.Text>
+          <ul className="list-unstyled">
+            {Array.isArray(ingredients) && ingredients.length > 0 ? (
+              ingredients.map((ingredient) => (
+                <li key={ingredient}>🍕 {ingredient}</li>
+              ))
+            ) : (
+              <li>No disponibles</li>
+            )}
+          </ul>
+        </div>
 
         {/* Precio */}
-        <BootstrapCard.Text className="text-center">
+        <p className="card-text text-center">
           <strong>Precio:</strong> ${price.toLocaleString()}
-        </BootstrapCard.Text>
+        </p>
 
         {/* Botones */}
         <div className="d-flex justify-content-around mt-3">
-          <Button variant="outline-dark">
-            Ver Más <span role="img" alt="Botón ver más" aria-label="ver más">👀</span>
-          </Button>
-          <Button variant="dark">
-            Añadir <span role="img" alt="Botón Añadir" aria-label="carrito">🛒</span>
-          </Button>
+          <button className="btn btn-outline-dark">
+            Ver Más <span role="img" aria-label="ver más">👀</span>
+          </button>
+          <button className="btn btn-dark">
+            Añadir <span role="img" aria-label="carrito">🛒</span>
+          </button>
         </div>
-      </BootstrapCard.Body>
-    </BootstrapCard>
-  );
-};
+      </div>
+    </div>
+  )
+}
 
 // Validación de las props
 Card.propTypes = {
@@ -46,6 +50,6 @@ Card.propTypes = {
   price: PropTypes.number.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
   img: PropTypes.string.isRequired,
-};
+}
 
-export default Card;
+export default Card
